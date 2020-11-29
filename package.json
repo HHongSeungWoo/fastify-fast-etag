@@ -1,0 +1,33 @@
+{
+  "name": "fastify-fast-etag",
+  "version": "1.0.1",
+  "description": "fastify sha1 etag plugin",
+  "types": "index.d.ts",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "fastify",
+    "etag"
+  ],
+  "author": "HHongSeungWoo",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^3.8.0",
+    "fastify-plugin": "^3.0.0"
+  },
+  "homepage": "https://github.com/HHongSeungWoo/fastify-fast-etag",
+  "bugs": {
+    "url": "https://github.com/HHongSeungWoo/fastify-fast-etag",
+    "email": "qksn1541@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HHongSeungWoo/fastify-fast-etag"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.10",
+    "typescript": "^4.1.2"
+  }
+}
