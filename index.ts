@@ -7,13 +7,15 @@ export interface FastEtagOptions {
     algorithm: string
     hashOptions: HashOptions | undefined
     encoding: HexBase64Latin1Encoding
+    debug: boolean
 }
 
 const DefaultOptions: FastEtagOptions = {
     weak: true,
     algorithm: "sha1",
     hashOptions: undefined,
-    encoding: "base64"
+    encoding: "base64",
+    debug: false
 }
 
 const FastEtagAsync: FastifyPluginAsync<FastEtagOptions> = async (fastify, options) => {
@@ -40,6 +42,15 @@ const FastEtagAsync: FastifyPluginAsync<FastEtagOptions> = async (fastify, optio
         }
         done(null, payload)
     })
+
+    if (options.debug) {
+        fastify.addHook('onResponse', function (request, reply, done) {
+           request.log.info(request.headers)
+           request.log.info(reply.getHeaders())
+        });
+    }
+
+
 }
 
 export default fp(FastEtagAsync, '3.x')

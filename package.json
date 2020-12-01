@@ -1,6 +1,6 @@
 {
   "name": "fastify-fast-etag",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "fastify sha1 etag plugin",
   "types": "index.d.ts",
   "main": "index.js",

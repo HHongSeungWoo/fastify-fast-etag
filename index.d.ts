@@ -6,6 +6,7 @@ export interface FastEtagOptions {
     algorithm: string;
     hashOptions: HashOptions | undefined;
     encoding: HexBase64Latin1Encoding;
+    debug: boolean;
 }
 declare const _default: FastifyPluginAsync<FastEtagOptions, import("http").Server>;
 export default _default;

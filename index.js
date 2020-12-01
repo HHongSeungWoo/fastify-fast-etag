@@ -9,7 +9,8 @@ const DefaultOptions = {
     weak: true,
     algorithm: "sha1",
     hashOptions: undefined,
-    encoding: "base64"
+    encoding: "base64",
+    debug: false
 };
 const FastEtagAsync = async (fastify, options) => {
     options = Object.assign(DefaultOptions, options);
@@ -30,5 +31,11 @@ const FastEtagAsync = async (fastify, options) => {
         }
         done(null, payload);
     });
+    if (options.debug) {
+        fastify.addHook('onResponse', function (request, reply, done) {
+            request.log.info(request.headers);
+            request.log.info(reply.getHeaders());
+        });
+    }
 };
 exports.default = fastify_plugin_1.default(FastEtagAsync, '3.x');
