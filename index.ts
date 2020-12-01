@@ -1,13 +1,13 @@
-import { FastifyPluginAsync } from 'fastify'
+import {FastifyPluginAsync} from 'fastify'
 import fp from 'fastify-plugin'
 import {createHash, HashOptions, HexBase64Latin1Encoding} from 'crypto'
 
 export interface FastEtagOptions {
-    weak: boolean
-    algorithm: string
-    hashOptions: HashOptions | undefined
-    encoding: HexBase64Latin1Encoding
-    debug: boolean
+    weak?: boolean
+    algorithm?: string
+    hashOptions?: HashOptions | undefined
+    encoding?: HexBase64Latin1Encoding
+    debug?: boolean
 }
 
 const DefaultOptions: FastEtagOptions = {
@@ -31,7 +31,7 @@ const FastEtagAsync: FastifyPluginAsync<FastEtagOptions> = async (fastify, optio
                 return
             }
 
-            etag = (options.weak ? 'W/"' : '"') + createHash(options.algorithm, options.hashOptions).update(payload).digest(options.encoding) + '"'
+            etag = (options.weak ? 'W/"' : '"') + createHash(options.algorithm!, options.hashOptions).update(payload).digest(options.encoding!) + '"'
             reply.header('etag', etag)
         }
 
@@ -45,8 +45,9 @@ const FastEtagAsync: FastifyPluginAsync<FastEtagOptions> = async (fastify, optio
 
     if (options.debug) {
         fastify.addHook('onResponse', function (request, reply, done) {
-           request.log.info(request.headers)
-           request.log.info(reply.getHeaders())
+            request.log.info(request.headers)
+            request.log.info(reply.getHeaders())
+            done()
         });
     }
 

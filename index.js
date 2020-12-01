@@ -35,6 +35,7 @@ const FastEtagAsync = async (fastify, options) => {
         fastify.addHook('onResponse', function (request, reply, done) {
             request.log.info(request.headers);
             request.log.info(reply.getHeaders());
+            done();
         });
     }
 };
